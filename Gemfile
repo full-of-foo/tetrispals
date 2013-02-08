@@ -5,7 +5,7 @@ gem 'jquery-rails', '2.0.2'
 
 
 group :development do
-  gem 'pg', '0.12.2'
+  gem 'sqlite3', '1.3.5'
   gem 'rspec-rails', '2.11.0'
 end
 
