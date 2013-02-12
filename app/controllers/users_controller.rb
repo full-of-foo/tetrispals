@@ -16,8 +16,9 @@ class UsersController < ApplicationController
 	end
 	
 	def create
-		@user = User.new(params[:user])
+		@user = User.new(params[:user]) 
 		if @user.save
+		  10.times { @user.high_scores.create!(score: 0)}
 		  sign_in @user
 		  flash.now[:success] = "Welcome to the Tetrispals!"
 		  redirect_to @user

@@ -1,7 +1,6 @@
 @import 'bootstrap';
 
 /*$lightGrey: #999; - Bootstrap has predifined variables (grayLight)*/ 
-
 $grayMediumLight: #eaeaea;
 
 @mixin box_sizing {
@@ -250,6 +249,12 @@ aside {
   }
 }
 
+/* Game elements */
+
+#start{
+  margin-bottom: 30px;
+}
+
 #upcoming {
    height: 200px;
    width: 180px;
@@ -257,9 +262,9 @@ aside {
 
 #canvas {
    height: 390px;
-   width: 310px;
+   width: 320px;
 }
 
-#score-noti{
-  marigin-top: 55px;
+.table td, .table th{
+  text-align: center;
 }

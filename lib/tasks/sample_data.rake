@@ -4,6 +4,7 @@ namespace :db do
     make_users
     make_microposts
     make_relationships
+    make_scores
   end
 end
 
@@ -39,4 +40,8 @@ def make_relationships
   followers      = users[3..10]
   followed_users.each { |followed| user.follow!(followed) }
   followers.each      { |follower| follower.follow!(user) }
+end
+
+def make_scores
+  User.all.each { |u| 9.times { u.high_scores.create!(score:  rand(120..1100)) } }
 end

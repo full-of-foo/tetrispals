@@ -1,12 +1,22 @@
-    <div id="menu" class="container">
-      <div id="start" class="center row"><h2><a href="javascript:play();">Press Space to Play.</a></h2></div>
-      <div id="tetris-area" class="row center" style="margin-bottom: 35px;">
-      <div class="span 2"><canvas id="upcoming"></canvas></div>
-      <div class=""><canvas id="canvas">
+<div id="menu" class="container-fluid center">
+      
+      <div id="start" class="center row"><button class="btn btn-large btn-primary" onclick="javascript:play();" type="button">Press Space to Play</button></div>
+      <div class="row">
+      <div id="score-table" class="span3">
+      <%= render 'shared/user_scores' %>
+          </div>
+    <div class="span 6 offset2"><canvas id="canvas">
       Sorry, this example cannot be run because your browser does not support the &lt;canvas&gt; element
-    </canvas></div>
+    </canvas>
   </div>
-      <div class="row offset1">
+</div>
+       <span id="score-alert" style="display: none;" class="alert alert-success row center">Score Added!!!</span>
+
+            <div class="row">
+              <div class="span3">
+                 <canvas id="upcoming"></canvas>
+              </div>
+              <div class="span6 offset2">
         <%= form_for(@high_score, remote: true ) do |f| %>        
         <div class="input-append">
          <%= text_field_tag nil, "0000", :id => "high_score_score2", :class => "span2 uneditable-input pull-left", :disabled => true %>
@@ -18,8 +28,43 @@
         <button class="btn" type="button">Rows</button>
        </div>
      </div>
+   </div>
+ </div>
      <% end %>
-    </div>
+
+ <!-- high dialog -->
+     <div id="high-dialog" class="modal hide fade">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>Yay!!!</h3>
+  </div>
+  <div class="modal-body">
+    <p>Congrats…new high score!</p>
+  </div>
+  <div class="modal-footer">
+    <a href="#" data-dismiss="modal" class="btn btn-primary">Close</a>
+  </div>
+</div>
+
+ <!-- low dialog -->
+     <div id="low-dialog" class="modal hide fade">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>Oh no :(</h3>
+  </div>
+  <div class="modal-body">
+    <p>Opps...didn't quite do so well that time!</p>
+  </div>
+  <div class="modal-footer">
+    <a href="#" data-dismiss="modal" class="btn btn-primary">Close</a>
+  </div>
+</div>
+
+
+
+
+
+
 
   <script>
 
@@ -209,9 +254,9 @@
     // GAME LOGIC
     //-------------------------------------------------------------------------
 
-    function play() { hide('start'); reset();          playing = true;  };
+    function play() { hide('start'); reset();          playing = true; };
     function lose() { show('start'); setVisualScore(); playing = false;
-              $("#new_high_score").submit();						
+      setTimeout(function(){ $("#new_high_score").submit(); }, 300);						
 	};
 
     function setVisualScore(n)      { vscore = n || score; invalidateScore(); };
@@ -389,8 +434,8 @@
 
     function drawScore() {
       if (invalid.score) {
-        get('high_score_score').value  = ("00000" + Math.floor(vscore)).slice(-5);
         get('high_score_score2').value  = ("00000" + Math.floor(vscore)).slice(-5);
+        get('high_score_score').value  = ("00000" + Math.floor(vscore)).slice(-5);
         invalid.score = false;
       }
     }
