@@ -1,5 +1,5 @@
 class HighScore < ActiveRecord::Base
-  attr_accessible :score
+  attr_accessible :user_id, :score
   validates :user_id, presence: true
   validates :score, presence: true
   
