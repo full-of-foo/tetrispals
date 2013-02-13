@@ -18,6 +18,7 @@ class HighScoresController < ApplicationController
         remove_last_top_score
         @high_score.save
         if top_ten_score?(@high_score)
+            current_user.microposts.build(content: "Wooooo! I'm now raking #{global_position(@high_score).ordinalize} on the leaderboard!!!").save
             respond_to do |format|            
                 format.js { render 'top-score.js.erb' }
               end

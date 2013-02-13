@@ -21,6 +21,7 @@
 			</td>
 			<td>
 				<%= link_to User.find(s.user_id).name,  User.find(s.user_id)%>
+				<span class="timestamp pull-right"><%= time_ago_in_words(s.created_at) %> ago</span>
 			</td>
 		</tr>
 		<% end %>
