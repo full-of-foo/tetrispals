@@ -43,5 +43,6 @@ def make_relationships
 end
 
 def make_scores
-  User.all.each { |u| 10.times { u.high_scores.create!(score:  rand(120..1100)) } }
+  r= Random.new
+  User.all.each { |u| 10.times { u.high_scores.create!(score:  r.rand(110..1987)) } }
 end
