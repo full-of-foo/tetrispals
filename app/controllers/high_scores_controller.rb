@@ -14,12 +14,18 @@ class HighScoresController < ApplicationController
 	def create
 			@high_score = HighScore.new(score: params[:high_score][:score], user_id: current_user.id)
 		  @high_scores = HighScore.find(:all, :conditions => { :user_id => current_user.id })
-      if is_top_score?(@high_score)
+      if top_score?(@high_score)
         remove_last_top_score
         @high_score.save
-        respond_to do |format|            
-            format.js { render 'high-score.js.erb' }
-          end 
+        if top_ten_score?(@high_score)
+            respond_to do |format|            
+                format.js { render 'top-score.js.erb' }
+              end
+            else
+            respond_to do |format|            
+                format.js { render 'high-score.js.erb' }
+              end
+        end 
       else
         respond_to do |format| 
           format.js { render 'low-score.js.erb' }

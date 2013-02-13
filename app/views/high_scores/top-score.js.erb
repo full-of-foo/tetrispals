@@ -1,0 +1,3 @@
+$("#score-table").html("<%= escape_javascript(render(:partial => 'shared/user_scores')) %>");
+$('#new-pos').html('<%= global_position(top_score(current_user)).ordinalize %>');
+$('#top-dialog').modal('show');

@@ -1,6 +1,6 @@
 module HighScoresHelper
 	
-	def is_top_score?(high_score)
+	def top_score?(high_score)
 		current_user.high_scores.sort_by { |high_s| high_s.score }.first.score < high_score.score
 	end
 
@@ -14,6 +14,10 @@ module HighScoresHelper
 
 	def global_position(score)
 		HighScore.all.sort_by { |high_s| high_s.score }.reverse.index(score) + 1
+	end
+
+	def top_ten_score?(high_score)
+		global_position(high_score) < 11
 	end
 
 	def viewing_trophy_user(user)
