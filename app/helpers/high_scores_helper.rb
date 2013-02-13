@@ -15,4 +15,9 @@ module HighScoresHelper
 	def global_position(score)
 		HighScore.all.sort_by { |high_s| high_s.score }.reverse.index(score) + 1
 	end
+
+	def viewing_trophy_user(user)
+		@user = current_user unless @user
+	end
+
 end

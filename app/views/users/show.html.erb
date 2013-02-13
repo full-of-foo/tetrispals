@@ -5,6 +5,7 @@
       <h1>
         <%= gravatar_for @user , 40%>
         <%= @user.name %>
+        <%= render 'shared/trophy' if global_position(top_score(@user))< 4 %>
       </h1>
     </section>
 	 <section>

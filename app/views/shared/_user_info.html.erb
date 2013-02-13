@@ -2,8 +2,9 @@
   <%= gravatar_for current_user, 52 %>
 </a>
 <h1>
-  <%= current_user.name %>
+  <%= current_user.name %> 
 </h1>
+<%= render 'shared/trophy' if global_position(top_score(current_user))< 4 %>
 <span>
   <%= link_to "view my profile", current_user %>
 </span>

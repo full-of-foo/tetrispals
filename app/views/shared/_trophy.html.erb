@@ -1,0 +1,13 @@
+<% viewing_trophy_user @user %>
+
+<span class="trophy-ico pull-right">
+
+<% if global_position(top_score @user) == 3 %>
+	<%= image_tag("bronze.png", alt: "trophy") %>
+<% elsif global_position(top_score @user) == 2 %>
+	<%= image_tag("silver.png", alt: "trophy") %>
+<% else %>
+	<%= image_tag("gold.png", alt: "trophy") %>
+<% end %>
+
+</span>
