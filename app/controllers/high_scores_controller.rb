@@ -2,8 +2,9 @@ class HighScoresController < ApplicationController
   before_filter :signed_in_user
 
   	def index
-  		@high_scores = HighScore.all
-  	end
+  		@leader_scores = HighScore.paginate(page: params[:page], per_page: 10, order: 'score DESC' )
+      @high_scores = HighScore.find(:all, :conditions => { :user_id => current_user.id })
+    end
 	
 	def new
 		 @high_score = HighScore.new
@@ -17,8 +18,7 @@ class HighScoresController < ApplicationController
         remove_last_top_score
         @high_score.save
         respond_to do |format|            
-            format.html
-            format.js
+            format.js { render 'high-score.js.erb' }
           end 
       else
         respond_to do |format| 

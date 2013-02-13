@@ -12,6 +12,7 @@ Tetrispals::Application.routes.draw do
   
   root to: 'static_pages#home'
   
+  match '/leaderboard', to: 'high_scores#index'
   match '/tetris', to: 'high_scores#new'
   match '/help', to: 'static_pages#help'
   match '/about', to: 'static_pages#about'

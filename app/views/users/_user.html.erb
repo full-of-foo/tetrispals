@@ -3,6 +3,8 @@
   <%= link_to user.name, user %>
   <% if current_user.admin? && !current_user?(user) %>
     | <%= link_to "delete", user, method: :delete,
-                                  data: { confirm: "You sure?" } %>
-  <% end %>
+                                  data: { confirm: "You sure?" } %> 
+  <% end %>|
+   <%= link_to "#{global_position(top_score user).ordinalize} (#{top_score(user).score} points)", user %>
+
 </li>

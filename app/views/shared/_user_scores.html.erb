@@ -2,7 +2,7 @@
    <tr>
    	<th class="warning" colspan="2"><%= current_user?(@user) ? "Top Scores" : "My Top Scores"%></th>
    </tr>
-<% @high_scores.sort_by { |high_s| high_s.score }.reverse.each_with_index do |s, i| %>
+<% User.find(current_user.id).high_scores.sort_by { |high_s| high_s.score }.reverse.each_with_index do |s, i| %>
    		<tr>
    			<td>
    			<%= "#{(i.to_i + 1).ordinalize}"%>

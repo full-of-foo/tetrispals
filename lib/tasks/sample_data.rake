@@ -14,7 +14,7 @@ def make_users
                        password: "foobar",
                        password_confirmation: "foobar")
   admin.toggle!(:admin)
-  20.times do |n|
+  15.times do |n|
     name  = Faker::Name.name
     email = "example-#{n+1}@railstutorial.org"
     password  = "password"
@@ -26,7 +26,7 @@ def make_users
 end
 
 def make_microposts
-  users = User.all(limit: 3)
+  users = User.all(limit: 12)
   50.times do
     content = Faker::Lorem.sentence(5)
     users.each { |user| user.microposts.create!(content: content) }
@@ -36,12 +36,12 @@ end
 def make_relationships
   users = User.all
   user  = users.first
-  followed_users = users[2..20]
+  followed_users = users[2..12]
   followers      = users[3..10]
   followed_users.each { |followed| user.follow!(followed) }
   followers.each      { |follower| follower.follow!(user) }
 end
 
 def make_scores
-  User.all.each { |u| 9.times { u.high_scores.create!(score:  rand(120..1100)) } }
+  User.all.each { |u| 10.times { u.high_scores.create!(score:  rand(120..1100)) } }
 end

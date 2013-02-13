@@ -12,4 +12,16 @@
     </strong>
     followers
   </a>
+  <a href="<%= leaderboard_path %>">
+    <strong id="" class="stat">
+      <%= "#{global_position(top_score @user).ordinalize}" %>
+    </strong>
+    ranking
+  </a>
+  <a href="<%= leaderboard_path %>">
+    <strong id="" class="stat">
+      <%= top_score(@user).score %>
+    </strong>
+    score
+  </a>
 </div>
