@@ -6,20 +6,20 @@ class MicropostsController < ApplicationController
   end
 
   def create
-	@micropost = current_user.microposts.build(params[:micropost])
-	@micropost.content = Nokogiri::HTML(@micropost.content).content() if @micropost.content =~ /<.*>/m && Nokogiri::HTML(@micropost.content)
-    if @micropost.save
-      flash[:success] = "Post created!"
-      redirect_to root_url
-    else
-      @feed_items = current_user.feed.paginate(page: params[:page])
-      render 'static_pages/home'
-    end
+  	@micropost = current_user.microposts.build(params[:micropost])
+  	@micropost.content = Nokogiri::HTML(@micropost.content).content() if @micropost.content =~ /<.*>/m && Nokogiri::HTML(@micropost.content)
+      if @micropost.save
+        flash[:success] = "Post created!"
+        redirect_to root_url
+      else
+        @feed_items = current_user.feed.paginate(page: params[:page])
+        render 'static_pages/home'
+      end
   end
 
   def destroy
-	@micropost.destroy
-    redirect_to root_url
+  	@micropost.destroy
+    redirect_to :back
   end
   
    private

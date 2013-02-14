@@ -13,7 +13,7 @@ module HighScoresHelper
 	end
 
 	def global_position(score)
-		HighScore.all.sort_by { |high_s| high_s.score }.reverse.index(score) + 1
+		(HighScore.all.sort_by { |high_s| high_s.score }.reverse.index(score) + 1)
 	end
 
 	def top_ten_score?(high_score)

@@ -18,6 +18,7 @@ class UsersController < ApplicationController
 	def create
 		@user = User.new(params[:user]) 
 		if @user.save
+		  UserMailer.welcome_email(@user).deliver
 		  10.times { @user.high_scores.create!(score: 0)}
 		  sign_in @user
 		  flash.now[:success] = "Welcome to the Tetrispals!"
