@@ -14,14 +14,17 @@ def make_users
                        password: "foobar",
                        password_confirmation: "foobar")
   admin.toggle!(:admin)
-  15.times do |n|
+  30.times do |n|
     name  = Faker::Name.name
     email = "example-#{n+1}@tetrispals.org"
     password  = "foobar"
-    User.create!(name:     name,
+    u = User.new(name:     name,
                  email:    email,
                  password: password,
                  password_confirmation: password)
+    imgName = "public/uploads/user/faces/meme(#{n+6}).png"
+    u.image.store!(File.open(File.join(Rails.root, imgName)))
+    u.save!
   end
 end
 
@@ -44,5 +47,5 @@ end
 
 def make_scores
   r= Random.new
-  User.all.each { |u| 10.times { u.high_scores.create!(score:  r.rand(110..1987)) } }
+  User.all.each { |u| 10.times { u.high_scores.create!(score:  r.rand(110..9987)) } }
 end

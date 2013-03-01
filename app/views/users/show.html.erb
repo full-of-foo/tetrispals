@@ -4,10 +4,16 @@
   <aside class="span4">
     <section>
       <h1>
-        <%= gravatar_for @user , 40%>
+        <a href="<%= user_path(@user) %>">
+          <% if @user.image_url %>
+          <%= image_tag @user.image_url.to_s, size: "66x66", class: "gravatar"%>
+       <% else %>
+        <%= gravatar_for @user, "52x52" %>
+        <% end %>
         <%= @user.name %>
         <%= render 'shared/trophy' if global_position(top_score(@user))< 4 %>
       </h1>
+    </a>
     </section>
 	 <section>
       <%= render 'shared/stats' %>

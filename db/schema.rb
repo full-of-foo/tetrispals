@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130207131627) do
+ActiveRecord::Schema.define(:version => 20130225104152) do
 
   create_table "high_scores", :force => true do |t|
     t.integer  "score"
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(:version => 20130207131627) do
     t.string   "password_digest"
     t.string   "remember_token"
     t.boolean  "admin"
+    t.string   "image"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
