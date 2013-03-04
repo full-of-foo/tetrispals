@@ -13,6 +13,11 @@
         <%= @user.name %>
         <%= render 'shared/trophy' if global_position(top_score(@user))< 4 %>
       </h1>
+      <% if @user.address %>
+        <h2>
+          <%= @user.address %>
+        </h2>
+      <% end %>
     </a>
     </section>
 	 <section>

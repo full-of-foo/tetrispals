@@ -6,4 +6,8 @@ module UsersHelper
     image_tag(gravatar_url, alt: user.name, class: "gravatar", size: size)
   end
 
+  def geo_address(ip_v4)
+  	Geocoder.search(ip_v4)[0].country != "Reserved" ? "#{Geocoder.search(ip_v4)[0].country},  #{Geocoder.search(ip_v4)[0].city}" : ""
+  end
+
 end

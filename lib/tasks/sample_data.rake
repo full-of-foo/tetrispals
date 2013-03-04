@@ -14,18 +14,20 @@ def make_users
                        password: "foobar",
                        password_confirmation: "foobar")
   admin.toggle!(:admin)
-  30.times do |n|
+  30.times { |n|
     name  = Faker::Name.name
     email = "example-#{n+1}@tetrispals.org"
+    address = rand_address
     password  = "foobar"
     u = User.new(name:     name,
                  email:    email,
                  password: password,
-                 password_confirmation: password)
+                 password_confirmation: password,
+                 address: address)
     imgName = "public/uploads/user/faces/meme(#{n+6}).png"
     u.image.store!(File.open(File.join(Rails.root, imgName)))
     u.save!
-  end
+  }
 end
 
 def make_microposts
@@ -48,4 +50,10 @@ end
 def make_scores
   r= Random.new
   User.all.each { |u| 10.times { u.high_scores.create!(score:  r.rand(110..9987)) } }
+end
+
+
+def rand_address
+  ip_v4 = Faker::Internet::ip_v4_address
+  Geocoder.search(ip_v4)[0].country != "Reserved" ? "#{Geocoder.search(ip_v4)[0].country},  #{Geocoder.search(ip_v4)[0].city}" : ""
 end
