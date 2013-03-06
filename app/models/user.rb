@@ -1,3 +1,5 @@
+
+
 # == Schema Information
 #
 # Table name: users
@@ -33,6 +35,14 @@ class User < ActiveRecord::Base
   validates :password_confirmation, presence: true
 
   mount_uploader :image, ImageUploader
+
+  def self.search(search)
+    if search
+      where("name LIKE ?", "%#{search}%")
+    else
+      scoped
+    end
+  end
   
   def feed
 	   Micropost.from_users_followed_by(self)

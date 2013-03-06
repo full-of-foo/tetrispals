@@ -15,3 +15,18 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require_tree .
+
+$(function() {
+	$("#user-list .pagination a").live("click", function () {
+		$("#user-list .pagination").html('<div class="progress progress-info progress-striped active"><div class="bar" style="width: 80%"></div></div>');
+		$.getScript(this.href);
+		return false;
+	});
+
+	var timer = null;
+	$("#users_search input").keyup(function() {
+        clearTimeout(timer); 
+        timer = setTimeout($.get($("#users_search").attr("action"), $("#users_search").serialize(), null, "script"), 1000);
+        return false;
+  });
+});

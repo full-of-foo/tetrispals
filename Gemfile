@@ -11,9 +11,8 @@ gem 'bootstrap-will_paginate', '0.0.6'
 gem 'nokogiri', '1.5.6'
 gem 'carrierwave'
 gem 'geocoder'
+gem 'jquery-rails', '2.0.2'
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 group :development, :test do
   gem 'rspec-rails', '2.11.0'
@@ -30,8 +29,6 @@ group :assets do
   gem 'coffee-rails', '3.2.2'
   gem 'uglifier', '1.2.3'
 end
-
-gem 'jquery-rails', '2.0.2'
 
 group :test do
   gem 'capybara', '1.1.2'
