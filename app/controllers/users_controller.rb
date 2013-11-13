@@ -84,14 +84,18 @@ class UsersController < ApplicationController
   
   private
 
-    def signed_in_user
-      redirect_to signin_url, notice: "Please sign in" unless signed_in?
+  def signed_in_user
+    if not signed_in? and params[:format] != "json"
+      redirect_to signin_url, notice: "Please sign in" 
+    elsif not signed_in? and params[:format] == "json"
+      render :json => { :message => "Not logged in" }, :status => 401
     end
+  end
   
   def correct_user
       @user = User.find(params[:id])
       redirect_to(root_path) unless current_user?(@user)
-    end
+  end
   
   def admin_user
     redirect_to(root_path) unless current_user.admin?
