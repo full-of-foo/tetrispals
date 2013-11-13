@@ -6,7 +6,7 @@ describe "Static pages" do
 
   describe "Home page" do
     before { visit root_path }
-    it { should have_selector('h1',    text: 'Sample App') }
+    it { should have_selector('h1',    text: 'Welcome to Tetris Pals') }
   end
 
   describe "Help page" do

@@ -25,20 +25,16 @@
 #   timeout: 5000
 
 development:
-  adapter: postgresql
-  database: tetrispalsDev
+  adapter: sqlite3
+  database: db/development.sqlite3
   pool: 5
   timeout: 5000
-  user: root
-  password: password
 
 test:
-  adapter: postgresql
-  database: tetrispalsTest
+  adapter: sqlite3
+  database: db/development.sqlite3
   pool: 5
   timeout: 5000
-  user: root
-  password: password
 
 production:
   adapter: postgresql
