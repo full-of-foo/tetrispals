@@ -1,7 +1,11 @@
 class UsersController < ApplicationController
-  before_filter :signed_in_user, only: [:index, :edit, :update, :destroy]
+  before_filter :signed_in_user, only: [:edit, :update, :destroy]
   before_filter :correct_user,   only: [:edit, :update]
   before_filter :admin_user, only: [:destroy]
+
+  after_filter only: [:index] { paginate(:users) }
+  after_filter only: [:following] { paginate(:users) }
+  after_filter only: [:followers] { paginate(:users) }
 
   
   def show

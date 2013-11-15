@@ -30,6 +30,7 @@ GEM
       multi_json (~> 1.0)
     annotate (2.5.0)
       rake
+    api-pagination (1.1.1)
     arel (3.0.2)
     bcrypt-ruby (3.0.1)
     bcrypt-ruby (3.0.1-x86-mingw32)
@@ -194,6 +195,7 @@ PLATFORMS
 
 DEPENDENCIES
   annotate (= 2.5.0)
+  api-pagination
   bcrypt-ruby (= 3.0.1)
   bootstrap-sass (= 2.1)
   bootstrap-will_paginate (= 0.0.6)

@@ -11,6 +11,7 @@ gem 'nokogiri', '1.5.6'
 gem 'carrierwave'
 gem 'geocoder'
 gem 'jquery-rails', '2.0.2'
+gem 'api-pagination'
 
 
 group :development, :test do
@@ -39,14 +40,3 @@ group :test do
 end
 
 
-# To use Jbuilder templates for JSON
-# gem 'jbuilder'
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano'
-
-# To use debugger
-# gem 'debugger'
